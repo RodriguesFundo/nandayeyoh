@@ -126,11 +126,24 @@
             </table>
         </div>
     
-    <!-- Botão para voltar para a tela principal -->
-    <div class="card">
-            <button onclick="window.location.href='./principal.php'">Voltar para a tela principal</button>
-        </div>
-    </div>
+        <div class="card" style="text-align: center;">
+    <button onclick="window.location.href='./principal.php'"
+            style="background-color: #555; /* Cor de fundo cinza escuro */
+                   color: #fff; /* Cor do texto */
+                   border: none; /* Sem borda */
+                   padding: 10px 20px; /* Espaçamento interno */
+                   border-radius: 5px; /* Borda arredondada */
+                   cursor: pointer; /* Cursor */
+                   font-size: 16px; /* Tamanho da fonte */
+                   transition: background-color 0.3s; /* Transição de cor de fundo */"
+            onmouseover="this.style.backgroundColor='#007bff'" 
+            onmouseout="this.style.backgroundColor='#555'"> 
+        Voltar para a tela principal
+    </button>
+</div>
+
+
+
     
 </body>
 </html>
