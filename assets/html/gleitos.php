@@ -32,80 +32,116 @@
                 </select>
                 
                 <label for="id_hospital">ID do Hospital:</label>
-                <select id="id_hospital" name="id_hospital">
-                    <?php
-                    // Incluir arquivo de conexão com o banco de dados
-                    include '../php/conexao.php';
-
-                    // Consulta SQL para recuperar os IDs dos hospitais
-                    $sql_hospital = "SELECT id_hospital FROM Hospital";
-                    $resultado_hospital = $conexao->query($sql_hospital);
-
-                    // Verificar se há resultados
-                    if ($resultado_hospital->num_rows > 0) {
-                        // Exibir os IDs dos hospitais como opções no campo de seleção
-                        while ($row_hospital = $resultado_hospital->fetch_assoc()) {
-                            echo "<option value='" . $row_hospital["id_hospital"] . "'>" . $row_hospital["id_hospital"] . "</option>";
-                        }
-                    }
-                    ?>
-                </select>
+                <input type="text" id="id_hospital" name="id_hospital" required>
                 
-                <button type="submit">Adicionar Leito</button>
+                <button type="submit" name="adicionar_leito">Adicionar Leito</button>
             </form>
+            <?php
+            // Verificar se o formulário de adicionar leito foi enviado
+            if (isset($_POST['adicionar_leito'])) {
+                // Incluir arquivo de conexão com o banco de dados
+                include '../php/conexao.php';
+
+                // Receber dados do formulário
+                $id_leito = $_POST['id_leito'];
+                $tipo_leito = $_POST['tipo_leito'];
+                $estado = $_POST['estado'];
+                $id_hospital = $_POST['id_hospital'];
+
+                // Inserir dados na tabela Leitos
+                $sql = "INSERT INTO Leitos (id_leito, tipo_leito, estado, id_Hospital) VALUES ('$id_leito', '$tipo_leito', '$estado', '$id_hospital')";
+                if ($conexao->query($sql) === TRUE) {
+                    echo "<script>alert('Leito adicionado com sucesso.');</script>";
+                    // Limpar os campos do formulário após adicionar leito
+                    echo "<script>document.getElementById('id_leito').value = '';</script>";
+                    echo "<script>document.getElementById('tipo_leito').selectedIndex = 0;</script>";
+                    echo "<script>document.getElementById('estado').selectedIndex = 0;</script>";
+                    echo "<script>document.getElementById('id_hospital').value = '';</script>";
+                    // Redirecionar para a mesma página após adicionar leito
+                    echo "<script>window.location = window.location.href;</script>";
+                    exit();
+                } else {
+                    echo "Erro ao adicionar leito: " . $conexao->error;
+                }
+            }
+            ?>
         </div>
 
         <!-- Visualizar Leitos -->
         <div class="card">
             <h3>Visualizar Leitos</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID do Leito</th>
-                        <th>Tipo de Leito</th>
-                        <th>Estado do Leito</th>
-                        <th>Nome do Hospital</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Consulta SQL para recuperar os leitos com o nome do hospital
-                    $sql_leitos = "SELECT Leitos.id_leito, Leitos.tipo_leito, Leitos.estado, Hospital.nome AS hospital_nome FROM Leitos INNER JOIN Hospital ON Leitos.id_hospital = Hospital.id_hospital";
-                    $resultado_leitos = $conexao->query($sql_leitos);
+            <?php
+            // Incluir arquivo de conexão com o banco de dados
+            include '../php/conexao.php';
 
-                    // Verificar se há resultados
-                    if ($resultado_leitos->num_rows > 0) {
-                        // Exibir os leitos em uma tabela
-                        while ($row_leitos = $resultado_leitos->fetch_assoc()) {
-                            echo "<tr>
-                                    <td>" . $row_leitos["id_leito"] . "</td>
-                                    <td>" . $row_leitos["tipo_leito"] . "</td>
-                                    <td>" . $row_leitos["estado"] . "</td>
-                                    <td>" . $row_leitos["hospital_nome"] . "</td>
-                                    <td>
-                                        <a href=\"#\">Editar</a> |
-                                        <a href=\"#\">Excluir</a>
-                                    </td>
-                                </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>Nenhum leito encontrado.</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+            // Consulta SQL para recuperar os leitos
+            $sql = "SELECT * FROM Leitos";
+            $resultado = $conexao->query($sql);
+
+            // Verificar se há resultados
+            if ($resultado->num_rows > 0) {
+                // Exibir os leitos em uma tabela
+                echo "<table>
+                        <thead>
+                            <tr>
+                                <th>ID do Leito</th>
+                                <th>Tipo de Leito</th>
+                                <th>Estado do Leito</th>
+                                <th>ID do Hospital</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                while ($row = $resultado->fetch_assoc()) {
+                    echo "<tr>
+                            <td>" . $row["id_leito"] . "</td>
+                            <td>" . $row["tipo_leito"] . "</td>
+                            <td>" . $row["estado"] . "</td>
+                            <td>" . $row["id_Hospital"] . "</td>
+                            <td>
+                                <a href=\"#\">Editar</a> |
+                                <a href=\"#\">Excluir</a>
+                            </td>
+                        </tr>";
+                }
+                echo "</tbody>
+                    </table>";
+            } else {
+                echo "Nenhum leito encontrado.";
+            }
+            ?>
         </div>
 
         <!-- Excluir Leito -->
         <div class="card">
             <h3>Excluir Leito</h3>
             <form method="post" action="">
-                <label for="numero">Número do Leito:</label>
-                <input type="text" id="numero" name="numero" required>
+                <label for="id_leito_excluir">ID do Leito:</label>
+                <input type="text" id="id_leito_excluir" name="id_leito_excluir" required>
                 
-                <button type="submit">Excluir Leito</button>
+                <button type="submit" name="excluir_leito">Excluir Leito</button>
             </form>
+            <?php
+            // Verificar se o formulário de excluir leito foi enviado
+            if (isset($_POST['excluir_leito'])) {
+                // Incluir arquivo de conexão com o banco de dados
+                include '../php/conexao.php';
+
+                // Receber ID do leito a ser excluído
+                $id_leito_excluir = $_POST['id_leito_excluir'];
+
+                // Excluir leito com o ID especificado
+                $sql = "DELETE FROM Leitos WHERE id_leito='$id_leito_excluir'";
+                if ($conexao->query($sql) === TRUE) {
+                    echo "<script>alert('Leito excluído com sucesso.');</script>";
+                    // Redirecionar para a mesma página após excluir leito
+                    echo "<script>window.location = window.location.href;</script>";
+                    exit();
+                } else {
+                    echo "Erro ao excluir leito: " . $conexao->error;
+                }
+            }
+            ?>
         </div>
 
         <div class="card" style="text-align: center;">
@@ -123,6 +159,7 @@
         Voltar para a tela principal
     </button>
 </div>
+
     </div>
 </body>
 </html>
