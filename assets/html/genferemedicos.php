@@ -4,101 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Enfermeiros e Médicos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            margin-top: 0;
-            text-align: center;
-            color: #333;
-        }
-
-        .card {
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-top: 0;
-            color: #007bff;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 10px;
-        }
-
-        input[type="text"],
-        select {
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: #0056b3;
-        }
-    </style>
+   <link rel="stylesheet" href="../css/enfermedicos.css">
 </head>
 <body>
     <div class="container">
@@ -111,7 +17,7 @@
                 <label for="nome_enfermeiro">Nome do Enfermeiro:</label>
                 <input type="text" id="nome_enfermeiro" name="nome_enfermeiro" required>
                 
-                <label for="cpf_enfermeiro">CPF do Enfermeiro:</label>
+                <label for="cpf_enfermeiro">BI do Enfermeiro:</label>
                 <input type="text" id="cpf_enfermeiro" name="cpf_enfermeiro" required>
                 
                 <button type="submit">Adicionar Enfermeiro</button>
@@ -125,7 +31,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>CPF</th>
+                        <th>BI</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -147,7 +53,7 @@
         <div class="card">
             <h3>Excluir Enfermeiro</h3>
             <form>
-                <label for="cpf_excluir_enfermeiro">CPF do Enfermeiro:</label>
+                <label for="cpf_excluir_enfermeiro">BI do Enfermeiro:</label>
                 <input type="text" id="cpf_excluir_enfermeiro" name="cpf_excluir_enfermeiro" required>
                 
                 <button type="submit">Excluir Enfermeiro</button>

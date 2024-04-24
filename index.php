@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistema Hospitalar</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
 </head>
 <body>
 <div class="container">
@@ -41,7 +41,7 @@
 
 <?php
 // Verificar se o formulário de login foi enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['email']) && !empty($_POST['password'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POST['password'])) {
     // Incluir arquivo de conexão com o banco de dados
     include './assets/php/conexao.php';
 
@@ -60,7 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['email']) && !empty($_
         exit();
     } else {
         // Credenciais incorretas, exibir mensagem de erro
-        echo "<script>alert('Email ou senha incorretos. Tente novamente.');</script>";
+        if (isset($_POST['email'])) {
+            echo "<script>alert('Email ou senha incorretos. Tente novamente.');</script>";
+        }
     }
 }
 
