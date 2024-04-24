@@ -98,7 +98,7 @@
         </div>
 
         <!-- Excluir Leito -->
-        <div class="card">
+        <div class="card" style="border: solid green 2x">
             <h3>Excluir Leito</h3>
             <form method="post" action="">
                 <label for="numero">Número do Leito:</label>

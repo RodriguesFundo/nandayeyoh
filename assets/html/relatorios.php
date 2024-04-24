@@ -26,16 +26,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Maria Silva</td>
-                        <td>Feminino</td>
-                        <td>01/01/1980</td>
-                        <td>Rua ABC, 123</td>
-                        <td>(11) 1234-5678</td>
-                        <td>maria@email.com</td>
-                        <td>123.456.789-01</td>
-                    </tr>
-                    <!-- Adicionar mais linhas conforme necessário -->
+                    <?php
+                    // Inclua o arquivo de conexão com o banco de dados
+                    include '../php/conexao.php';
+
+                    // Consulta SQL para recuperar os pacientes
+                    $sql_pacientes = "SELECT * FROM Pacientes";
+                    $resultado_pacientes = $conexao->query($sql_pacientes);
+
+                    // Verificar se há resultados
+                    if ($resultado_pacientes->num_rows > 0) {
+                        // Exibir os pacientes em uma tabela
+                        while ($row = $resultado_pacientes->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . $row["Nome"] . "</td>
+                                    <td>" . $row["Sexo"] . "</td>
+                                    <td>" . $row["Data_Nascimento"] . "</td>
+                                    <td>" . $row["Endereco"] . "</td>
+                                    <td>" . $row["Telefone"] . "</td>
+                                    <td>" . $row["Email"] . "</td>
+                                    <td>" . $row["cpf"] . "</td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='7'>Nenhum paciente encontrado.</td></tr>";
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -46,18 +62,31 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Número do Leito</th>
+                        <th>ID do Leito</th>
                         <th>Tipo de Leito</th>
-                        <th>Status do Leito</th>
+                        <th>Estado do Leito</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>101</td>
-                        <td>UTI</td>
-                        <td>Disponível</td>
-                    </tr>
-                    <!-- Adicionar mais linhas conforme necessário -->
+                    <?php
+                    // Consulta SQL para recuperar os leitos
+                    $sql_leitos = "SELECT * FROM Leitos";
+                    $resultado_leitos = $conexao->query($sql_leitos);
+
+                    // Verificar se há resultados
+                    if ($resultado_leitos->num_rows > 0) {
+                        // Exibir os leitos em uma tabela
+                        while ($row = $resultado_leitos->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . $row["id_leito"] . "</td>
+                                    <td>" . $row["tipo_leito"] . "</td>
+                                    <td>" . $row["estado"] . "</td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='3'>Nenhum leito encontrado.</td></tr>";
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -70,19 +99,38 @@
                     <tr>
                         <th>Nome</th>
                         <th>Especialidade</th>
-                        <th>CRM</th>
+                        <th>BI</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Dr. João Silva</td>
-                        <td>Cardiologista</td>
-                        <td>12345</td>
-                    </tr>
-                    <!-- Adicionar mais linhas conforme necessário -->
+                    <?php
+                    // Consulta SQL para recuperar os médicos
+                    $sql_medicos = "SELECT * FROM Medicos";
+                    $resultado_medicos = $conexao->query($sql_medicos);
+
+                    // Verificar se há resultados
+                    if ($resultado_medicos->num_rows > 0) {
+                        // Exibir os médicos em uma tabela
+                        while ($row = $resultado_medicos->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . $row["Nome"] . "</td>
+                                    <td>" . $row["Especialidade"] . "</td>
+                                    <td>" . $row["cpf"] . "</td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='3'>Nenhum médico encontrado.</td></tr>";
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
+    
+    <!-- Botão para voltar para a tela principal -->
+    <div class="card">
+            <button onclick="window.location.href='./principal.php'">Voltar para a tela principal</button>
+        </div>
     </div>
+    
 </body>
 </html>
