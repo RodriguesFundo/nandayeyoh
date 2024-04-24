@@ -38,6 +38,32 @@
                 
                 <button type="submit" name="adicionar_paciente">Adicionar Paciente</button>
             </form>
+            <?php
+            // Verificar se o formulário de adicionar paciente foi enviado
+            if (isset($_POST['adicionar_paciente'])) {
+                // Incluir arquivo de conexão com o banco de dados
+                include '../php/conexao.php';
+
+                // Receber dados do formulário
+                $nome = $_POST['nome'];
+                $sexo = $_POST['sexo'];
+                $data_nascimento = $_POST['data_nascimento'];
+                $endereco = $_POST['endereco'];
+                $telefone = $_POST['telefone'];
+                $cpf = $_POST['cpf'];
+
+                // Inserir dados na tabela Pacientes
+                $sql = "INSERT INTO Pacientes (Nome, Sexo, Data_Nascimento, Endereco, Telefone, cpf) VALUES ('$nome', '$sexo', '$data_nascimento', '$endereco', '$telefone', '$cpf')";
+                if ($conexao->query($sql) === TRUE) {
+                    echo "<script>alert('Paciente adicionado com sucesso.');</script>";
+                    // Redirecionar para a mesma página após adicionar paciente
+                    echo "<script>window.location = window.location.href;</script>";
+                    exit();
+                } else {
+                    echo "Erro ao adicionar paciente: " . $conexao->error;
+                }
+            }
+            ?>
         </div>
 
         <!-- Visualizar Pacientes -->
@@ -98,6 +124,27 @@
                 
                 <button type="submit" name="excluir_paciente">Excluir Paciente</button>
             </form>
+            <?php
+            // Verificar se o formulário de excluir paciente foi enviado
+            if (isset($_POST['excluir_paciente'])) {
+                // Incluir arquivo de conexão com o banco de dados
+                include '../php/conexao.php';
+
+                // Receber CPF do paciente a ser excluído
+                $cpf_excluir = $_POST['cpf'];
+
+                // Excluir paciente com o CPF especificado
+                $sql = "DELETE FROM Pacientes WHERE cpf='$cpf_excluir'";
+                if ($conexao->query($sql) === TRUE) {
+                    echo "<script>alert('Paciente excluído com sucesso.');</script>";
+                    // Redirecionar para a mesma página após excluir paciente
+                    echo "<script>window.location = window.location.href;</script>";
+                    exit();
+                } else {
+                    echo "Erro ao excluir paciente: " . $conexao->error;
+                }
+            }
+            ?>
         </div>
     </div>
 </body>
