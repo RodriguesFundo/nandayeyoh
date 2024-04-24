@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Relatórios</h2>
+
+        <!-- Relatório de Pacientes -->
+        <div class="card">
+            <h3>Relatório de Pacientes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sexo</th>
+                        <th>Data de Nascimento</th>
+                        <th>Endereço</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>CPF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Maria Silva</td>
+                        <td>Feminino</td>
+                        <td>01/01/1980</td>
+                        <td>Rua ABC, 123</td>
+                        <td>(11) 1234-5678</td>
+                        <td>maria@email.com</td>
+                        <td>123.456.789-01</td>
+                    </tr>
+                    <!-- Adicionar mais linhas conforme necessário -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Relatório de Leitos -->
+        <div class="card">
+            <h3>Relatório de Leitos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número do Leito</th>
+                        <th>Tipo de Leito</th>
+                        <th>Status do Leito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>UTI</td>
+                        <td>Disponível</td>
+                    </tr>
+                    <!-- Adicionar mais linhas conforme necessário -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Relatório de Médicos -->
+        <div class="card">
+            <h3>Relatório de Médicos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Especialidade</th>
+                        <th>CRM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dr. João Silva</td>
+                        <td>Cardiologista</td>
+                        <td>12345</td>
+                    </tr>
+                    <!-- Adicionar mais linhas conforme necessário -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

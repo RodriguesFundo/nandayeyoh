@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Leitos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        select {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gestão de Leitos</h2>
+
+        <!-- Adicionar Leito -->
+        <div class="card">
+            <h3>Adicionar Leito</h3>
+            <form>
+                <label for="numero">Número do Leito:</label>
+                <input type="text" id="numero" name="numero" required>
+                
+                <label for="tipo">Tipo de Leito:</label>
+                <select id="tipo" name="tipo">
+                    <option value="UTI">UTI</option>
+                    <option value="Comum">Comum</option>
+                    <option value="Isolamento">Isolamento</option>
+                </select>
+                
+                <label for="status">Status do Leito:</label>
+                <select id="status" name="status">
+                    <option value="Disponível">Disponível</option>
+                    <option value="Ocupado">Ocupado</option>
+                    <option value="Manutenção">Manutenção</option>
+                </select>
+                
+                <button type="submit">Adicionar Leito</button>
+            </form>
+        </div>
+
+        <!-- Visualizar Leitos -->
+        <div class="card">
+            <h3>Visualizar Leitos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número do Leito</th>
+                        <th>Tipo de Leito</th>
+                        <th>Status do Leito</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>UTI</td>
+                        <td>Disponível</td>
+                        <td>
+                            <a href="#">Editar</a> |
+                            <a href="#">Excluir</a>
+                        </td>
+                    </tr>
+                    <!-- Adicionar mais linhas conforme necessário -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Excluir Leito -->
+        <div class="card">
+            <h3>Excluir Leito</h3>
+            <form>
+                <label for="numero">Número do Leito:</label>
+                <input type="text" id="numero" name="numero" required>
+                
+                <button type="submit">Excluir Leito</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
