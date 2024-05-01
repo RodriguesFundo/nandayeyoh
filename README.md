@@ -2,6 +2,20 @@
 
 Este é um sistema hospitalar que oferece funcionalidades de cadastro de pacientes, médicos, registro de internações e consultas de pacientes, médicos e internações.
 
+
+## Screenshots
+
+### Página de Login
+![Página de Login](./assets/img/login.png)
+
+
+### Cadastro de Usuários
+![Cadastro de Usuários](./assets/img/signup.png)
+
+
+### Dashboard Principal
+![Dashboard Principal](./assets/img/home.png)
+
 ## Tecnologias Utilizadas
 
 - HTML
